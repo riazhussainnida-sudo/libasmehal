@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jennivee's Bakery & Cafe — Lakeview, Chicago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ube:#6E3FA3;
+    --ube-deep:#4F2C79;
+    --strawberry:#E8536F;
+    --mango:#F4B23A;
+    --pandan:#5C9E72;
+    --cocoa:#6B4226;
+    --cream:#FFF8F1;
+    --card:#FFFEFB;
+    --ink:#241A2E;
+    --ink-soft:#5E5066;
+    --line:rgba(36,26,46,0.13);
+    --grad:linear-gradient(95deg, var(--ube), var(--strawberry) 55%, var(--mango));
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Karla', sans-serif; font-size:16px; line-height:1.6;
+  }
+  h1,h2,h3{font-family:'Bricolage Grotesque', sans-serif; font-weight:700; margin:0; color:var(--ink);}
+  a{color:inherit;}
+  .mono{font-family:'Space Mono', monospace;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .fade-up{opacity:0; transform:translateY(14px); animation:fadeUp .7s ease forwards;}
+  }
+  @keyframes fadeUp{to{opacity:1; transform:translateY(0);}}
+
+  /* ---------- WAVE DIVIDER (signature, quiet version) ---------- */
+  .wave{
+    height:18px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 24'%3E%3Cpath d='M0 12 Q15 0 30 12 T60 12' fill='none' stroke='%236E3FA3' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-size:50px 18px; opacity:0.4;
+  }
+
+  /* ---------- NAV ---------- */
+  header{position:sticky; top:0; z-index:50; background:rgba(255,248,241,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1100px; margin:0 auto;}
+  .wordmark{font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:1.3rem;}
+  .wordmark span{color:var(--ube);}
+  .navlinks{display:flex; gap:26px; font-size:0.92rem;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); transition:color .2s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--ink);}
+  .nav-cta{background:var(--ube); color:#fff; padding:9px 18px; border-radius:20px; text-decoration:none; font-size:0.88rem; font-weight:600; transition:background .2s;}
+  .nav-cta:hover, .nav-cta:focus-visible{background:var(--ube-deep);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 30px; position:relative; overflow:hidden;}
+  .blob{
+    position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%;
+    background:var(--grad); opacity:0.18; filter:blur(60px); z-index:0;
+  }
+  .hero-inner{position:relative; z-index:1;}
+  .eyebrow{font-family:'Space Mono', monospace; font-size:0.76rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--strawberry); margin-bottom:16px;}
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.6rem); line-height:1.02; letter-spacing:-0.01em; max-width:760px;}
+  .hero h1 .pop{position:relative; display:inline-block;}
+  .swirl-under{display:block; margin-top:-6px; width:230px; max-width:60%; height:22px;}
+  .hero p.lede{margin-top:20px; max-width:520px; font-size:1.1rem; color:var(--ink-soft);}
+  .hero-actions{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:24px; text-decoration:none; font-size:0.95rem; font-weight:600; border:1.5px solid transparent; transition:transform .15s ease, background .2s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ube); color:#fff;}
+  .btn-primary:hover, .btn-primary:focus-visible{background:var(--ube-deep);}
+  .btn-ghost{border-color:var(--ink); color:var(--ink);}
+  .btn-ghost:hover, .btn-ghost:focus-visible{background:#fff;}
+
+  .tagrow{display:flex; gap:14px; flex-wrap:wrap; margin-top:46px;}
+  .tag{background:var(--card); border:1.3px solid var(--line); border-radius:20px; padding:8px 16px; font-family:'Space Mono', monospace; font-size:0.78rem;}
+  .tag b{color:var(--ube-deep);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:58px 0;}
+  .section-head{margin-bottom:36px; max-width:640px;}
+  .section-head .eyebrow{margin-bottom:8px;}
+  .section-head h2{font-size:clamp(1.9rem, 3vw, 2.4rem);}
+  .section-head p{color:var(--ink-soft); margin-top:10px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:46px; align-items:start;}
+  .about-grid p{color:var(--ink-soft); font-size:1.02rem;}
+  .stat-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px;}
+  .stat-card + .stat-card{margin-top:14px;}
+  .stat-num{font-family:'Bricolage Grotesque', sans-serif; font-size:1.7rem; color:var(--ube-deep); font-weight:700;}
+  .stat-label{font-size:0.86rem; color:var(--ink-soft); margin-top:2px;}
+
+  /* ---------- MENU ---------- */
+  .case-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .case-item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 22px; position:relative; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .case-item:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(36,26,46,0.08);}
+  .stripe{position:absolute; top:0; left:0; right:0; height:5px;}
+  .case-item h3{font-size:1.05rem; font-weight:700; margin-top:6px;}
+  .case-item p{font-size:0.87rem; color:var(--ink-soft); margin:6px 0 0;}
+  .ribbon{
+    position:absolute; top:14px; right:-6px; background:var(--grad); color:#fff;
+    font-family:'Space Mono', monospace; font-size:0.62rem; letter-spacing:0.04em; text-transform:uppercase;
+    padding:4px 14px 4px 10px; clip-path:polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 50%);
+  }
+  .also-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
+  .pill{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:7px 14px; font-size:0.85rem; color:var(--ink-soft);}
+
+  /* ---------- REVIEWS ---------- */
+  .review-row{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .review{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 22px; position:relative;}
+  .review::before{content:''; position:absolute; top:0; left:22px; width:38px; height:4px; border-radius:4px; background:var(--grad);}
+  .review p{font-size:0.95rem; margin:14px 0 0;}
+  .review .src{margin-top:14px; font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--ink-soft);}
+
+  /* ---------- VISIT ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:stretch;}
+  .visit-info{display:flex; flex-direction:column; gap:22px;}
+  .info-row{display:flex; gap:14px; align-items:flex-start;}
+  .info-row .icon{width:20px; height:20px; flex-shrink:0; margin-top:3px; color:var(--ube-deep);}
+  .info-row h4{font-weight:700; font-size:0.95rem; margin:0 0 3px;}
+  .info-row p{margin:0; color:var(--ink-soft); font-size:0.92rem;}
+  .map-frame{border:1px solid var(--line); border-radius:14px; overflow:hidden; min-height:280px; background:var(--card);}
+  .map-frame iframe{width:100%; height:100%; border:0; min-height:280px; display:block;}
+  .status-pill{display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; background:var(--card); border:1px solid var(--line); padding:7px 14px; border-radius:20px; width:fit-content;}
+  .status-dot{width:7px; height:7px; border-radius:50%; background:#4f8b52;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line); padding:38px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:18px;}
+  footer p{color:var(--ink-soft); font-size:0.85rem; margin:4px 0 0;}
+
+  @media (max-width:760px){
+    .about-grid, .visit-grid{grid-template-columns:1fr;}
+    .case-grid{grid-template-columns:1fr 1fr;}
+    .review-row{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+  @media (max-width:520px){
+    .case-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="wordmark">jennivee<span>'s</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#menu">Flavors</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <a class="nav-cta" href="tel:+17739417200">Call to Order</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="blob" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow fade-up">Lakeview, Chicago · Queer-Owned Bakery & Café</div>
+    <h1 class="fade-up">Everyone deserves cake.</h1>
+    <svg class="swirl-under fade-up" viewBox="0 0 230 22" aria-hidden="true">
+      <defs>
+        <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#6E3FA3"/>
+          <stop offset="55%" stop-color="#E8536F"/>
+          <stop offset="100%" stop-color="#F4B23A"/>
+        </linearGradient>
+      </defs>
+      <path d="M2 14 Q22 2 42 14 T82 14 T122 14 T162 14 T202 14 T228 14" fill="none" stroke="url(#heroGrad)" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <p class="lede fade-up">A quaint Lakeview bakeshop on Halsted, baking unique cakes, gourmet cupcakes, and breakfast pastries from scratch — with a coffee bar to slow down at while you decide.</p>
+    <div class="hero-actions fade-up">
+      <a class="btn btn-primary" href="tel:+17739417200">Call to Order →</a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=2925+N+Halsted+St%2C+Chicago%2C+IL+60657" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+    <div class="tagrow fade-up">
+      <div class="tag">★ <b>4.6</b> · 1,230 reviews</div>
+      <div class="tag"><b>$10–20</b> per person</div>
+      <div class="tag">visits run <b>10–45 min</b></div>
+      <div class="tag">open <b>Tue–Sun</b> · closes 8 pm</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="wave"></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:18px;">
+          <div class="eyebrow">Our story</div>
+          <h2>Built with love, for everyone.</h2>
+        </div>
+        <p>Jennivee's opened its doors in 2017 on one simple belief: everyone deserves cake. It's Chicago's queer-owned bakery and café, and that welcome runs through everything — the everyday case full of gourmet cupcakes and layer cakes, the Filipino-inspired flavors like ube and buko pandan, and the specialty Pride cakes the shop bakes every June.</p>
+        <p style="margin-top:14px;">It's a small space with a big personality — regulars come for the coffee and stay for the people-watching as much as the pastries.</p>
+      </div>
+      <div>
+        <div class="stat-card">
+          <div class="stat-num">4.6 / 5</div>
+          <div class="stat-label">Average rating across 1,230 Google reviews</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Tue–Sun</div>
+          <div class="stat-label">Open six days a week, closed Mondays — hours have shifted recently, so a quick call helps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="wave"></div></div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">From the case</div>
+      <h2>Flavor highlights</h2>
+      <p>The shop's signature lineup — plus a habit of slipping Filipino flavors like ube and pandan in among the classics.</p>
+    </div>
+    <div class="case-grid">
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--ube);"></div>
+        <span class="ribbon">Popular</span>
+        <h3>Purple Velvet Cupcake</h3>
+        <p>The bakery's take on red velvet, dyed deep ube-purple, with the same tangy cream cheese finish.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--grad);"></div>
+        <span class="ribbon">Popular</span>
+        <h3>Assorted Gourmet Cupcakes</h3>
+        <p>A mixed box of the day's flavors — the easiest way to taste the whole case at once.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--mango);"></div>
+        <span class="ribbon">Popular</span>
+        <h3>Wedding Cake</h3>
+        <p>Custom tiers for the big day, built from the same scratch recipes as the everyday case.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--cocoa);"></div>
+        <h3>Hummingbird Cupcake</h3>
+        <p>Banana, pineapple, and warm spice, finished with cream cheese frosting.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--pandan);"></div>
+        <h3>Buko Pandan Cupcake</h3>
+        <p>Coconut and pandan, a nod to the classic Filipino dessert, in cupcake form.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--ube);"></div>
+        <h3>Ube Latte</h3>
+        <p>The purple yam flavor that runs through the shop's desserts, now in a cup.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--grad);"></div>
+        <h3>Rainbow Cake</h3>
+        <p>Bright layers stacked tall under a clean coat of buttercream — built to make any pickup feel like a celebration.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--cocoa);"></div>
+        <h3>Chocube</h3>
+        <p>A dense little chocolate-and-ube square — half brownie, half something else entirely.</p>
+      </div>
+
+      <div class="case-item">
+        <div class="stripe" style="background:var(--ube);"></div>
+        <h3>Ube Ice Cream</h3>
+        <p>Creamy, nutty, faintly vanilla — the same signature purple, served cold.</p>
+      </div>
+
+    </div>
+
+    <div class="also-row">
+      <span class="pill">German Chocolate Cake</span>
+      <span class="pill">Strawberry & Cream Cake</span>
+      <span class="pill">Coconut Cake</span>
+      <span class="pill">Strawberry Red Velvet Cake</span>
+      <span class="pill">Chocolate Truffle Cake</span>
+      <span class="pill">Bittersweet Belgian Chocolate Chip Cookies</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="wave"></div></div>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">From the regulars</div>
+      <h2>What people are saying</h2>
+      <p>A few notes pulled from 1,230+ Google reviews.</p>
+    </div>
+    <div class="review-row">
+      <div class="review">
+        <p>One self-described cupcake skeptic admits the mango-ube flavor changed their mind entirely.</p>
+        <div class="src mono">— Google review</div>
+      </div>
+      <div class="review">
+        <p>Reviewers consistently call out the coffee, the relaxed atmosphere, and a staff that makes the small space feel roomy.</p>
+        <div class="src mono">— Google review</div>
+      </div>
+      <div class="review">
+        <p>More than one visitor notes it's a cozy, compact shop punching well above its size in pastry and cake variety.</p>
+        <div class="src mono">— Google review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="wave"></div></div>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Find us</div>
+      <h2>Visit the Lakeview shop</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-info">
+        <div class="status-pill"><span class="status-dot"></span> Open now · not too busy</div>
+
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <div><h4>Address</h4><p>2925 N Halsted St, Chicago, IL 60657</p></div>
+        </div>
+
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5c0-1 1-2 2-2h2.2c.5 0 .9.3 1 .8l.9 3.3c.1.4 0 .9-.4 1.1L7 9.5c1 2.3 2.7 4 5 5l1.3-1.7c.3-.3.7-.5 1.1-.4l3.3.9c.5.1.8.5.8 1V18c0 1-1 2-2 2C9.8 20 3 13.2 3 5z"/></svg>
+          <div><h4>Phone</h4><p><a href="tel:+17739417200">+1 (773) 941-7200</a></p></div>
+        </div>
+
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><h4>Email</h4><p><a href="mailto:info@jenniveesbakery.com">info@jenniveesbakery.com</a></p></div>
+        </div>
+
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><h4>Hours</h4><p>Open Tuesday through Sunday, closed Mondays. Today: open · closes 8 PM.</p></div>
+        </div>
+      </div>
+
+      <div class="map-frame">
+        <iframe loading="lazy" src="https://maps.google.com/maps?q=2925%20N%20Halsted%20St%2C%20Chicago%2C%20IL%2060657&t=&z=15&ie=UTF8&output=embed" allowfullscreen title="Map to 2925 N Halsted St, Chicago, IL"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div>
+        <div class="wordmark">jennivee<span>'s</span></div>
+        <p>2925 N Halsted St, Chicago, IL 60657 · (773) 941-7200</p>
+      </div>
+      <p>Everyone deserves cake.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
